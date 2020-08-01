@@ -135,7 +135,11 @@ class HomeController extends Controller
             ->addColumn('action', function ($repo){
                 $txt = "";
                 $data = $repo->data;
-                $txt .= '<a class="btn btn-success btn-xs btn-forks" data-user-github-id="'.$repo->user_github_id.'" data-id="'.$repo->id.'" data-forks="'.$data->forks_url.'"><i class="fas fa-code-branch"></i></a>';
+                if ($repo->link_fork == null) {
+                    // $txt .= '<a class="btn btn-success btn-xs btn-forks" data-user-github-id="'.$repo->user_github_id.'" data-id="'.$repo->id.'" data-forks="'.$data->forks_url.'"><i class="fas fa-code-branch"></i></a>';
+                } else {
+                    $txt .= '<a href="'.$repo->link_fork.'" target="_blank">'.$repo->link_fork.'</a>';
+                }
                 return $txt;
             })
             ->addColumn('name', function ($repo) {
@@ -154,21 +158,18 @@ class HomeController extends Controller
     }
 
     public function fork(Request $request){
-        $url = 'https://api.github.com/repos/Vuduyanh1997/laravel10.test/forks';
+        $url = $request->forks_url;
         $client = new \GuzzleHttp\Client();
-        $data = ['organization'=>'bumblebiii'];
+        $data = ['username'=>'bumblebiii', 'password'=>'Vuduyanh1997'];
         // dd(Auth::user()->github_token);
         $request_api = $client->request('POST', $url, [
             'headers' => [
-                'Authorization' => Auth::user()->github_token,
+                'Authorization' => 'Bearer 215ade78337329c70151788094deb72e6015a617',
                 // 'Content-Type'=> 'application/json'
-            ],
-            'form_params' => [
-                'organization' => '1296269',
-            ],
+            ]
         ]);
 
         $response = static::contentsFromApi($request_api);
-        dd($request_api);
+        dd($response);
     }
 }

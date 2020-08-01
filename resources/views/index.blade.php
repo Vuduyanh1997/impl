@@ -29,8 +29,20 @@
         <td>{{$data->public_repos}}</td>
       </tr>
       <tr>
+        <th>Public gists</th>
+        <td>{{$data->public_gists}}</td>
+      </tr>
+      <tr>
+        <th>Followers</th>
+        <td>{{$data->followers}}</td>
+      </tr>
+      <tr>
+        <th>Following</th>
+        <td>{{$data->following}}</td>
+      </tr>
+      <tr>
         <th>Ngày tạo</th>
-        <td>{{$data->created_at}}</td>
+        <td>{{date('d/m/Y', strtotime($data->created_at))}}</td>
       </tr>
     </table>
     

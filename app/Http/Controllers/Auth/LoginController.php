@@ -46,6 +46,7 @@ class LoginController extends Controller
     }
     public function callback($provider){
         $getInfo = Socialite::driver($provider)->user();
+        // dd($getInfo);
         if ($provider == 'github') {
             
             $user = User::where('github_id', $getInfo->id)->first();
