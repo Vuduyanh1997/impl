@@ -158,18 +158,23 @@ class HomeController extends Controller
     }
 
     public function fork(Request $request){
-        $url = $request->forks_url;
-        $client = new \GuzzleHttp\Client();
-        $data = ['username'=>'bumblebiii', 'password'=>'Vuduyanh1997'];
-        // dd(Auth::user()->github_token);
-        $request_api = $client->request('POST', $url, [
-            'headers' => [
-                'Authorization' => 'Bearer 215ade78337329c70151788094deb72e6015a617',
-                // 'Content-Type'=> 'application/json'
-            ]
-        ]);
+        // try {
 
-        $response = static::contentsFromApi($request_api);
-        dd($response);
+        //     $url = $request->forks_url;
+        //     $client = new \GuzzleHttp\Client();
+        //     $request_api = $client->request('POST', $url, [
+        //         'headers' => [
+        //             'Authorization' => 'Bearer 215ade78337329c70151788094deb72e6015a617',
+        //             // 'Content-Type'=> 'application/json'
+        //         ]
+        //     ]);
+
+        //     $response = static::contentsFromApi($request_api);
+        //     return
+            
+        // } catch (Exception $e) {
+            
+        // }
+        // dd($response);
     }
 }
